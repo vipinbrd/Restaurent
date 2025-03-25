@@ -18,6 +18,7 @@ export function Bill(){
         case "NAME":return {...state,name:action.payload.value}
         case "PRICE":return {...state,price:action.payload.value}
         case "TABLE":return {...state,table:action.payload.value}
+     
 
        }
      
@@ -26,6 +27,26 @@ export function Bill(){
     }
 
      const[state,dispatch]=useReducer(reducer,object)
+
+     function onDeleteHandler(id,table){
+        console.log(id,table)
+        switch(table){
+            case 1: setTable1(table1.filter((ele)=>{
+                return ele.id!=id
+            }))
+            break;
+            case 2: setTable2(table1.filter((ele)=>{
+                return ele.id!=id;
+            }))
+            break;
+            case 3: setTable3(table1.filter((ele)=>{
+                return ele.id!=id;
+            }))
+            break;
+            default:return;
+        }
+
+     }
 
 
     function handleSubmit(event){
@@ -50,9 +71,7 @@ export function Bill(){
        
  
     }
-  console.log(table1);
-  console.log(table2);
-  console.log(table3)
+
     function  onChangeHanddler(event){
          switch(event.target.name){
             case "id":dispatch({type:"ID",payload:{value:event.target.value}})
@@ -96,9 +115,9 @@ export function Bill(){
 
         </form>
 
-        <Table value={1} data={table1}/>
-        <Table value={2} data={table2}/>
-        <Table value={3} data={table3}/>
+        <Table value={1} data={table1} onDeleteHandler={onDeleteHandler}/>
+        <Table value={2} data={table2}  onDeleteHandler={onDeleteHandler}/>
+        <Table value={3} data={table3}  onDeleteHandler={onDeleteHandler}/>
         
         
         </>

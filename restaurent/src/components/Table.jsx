@@ -7,7 +7,7 @@ export default function Table(props){
             return (
                 <li key="ele.id">
                       {"name: "+ele.name+" "+"price: "+ele.price+" table: "+ele.table}
-                    <button>delete</button>
+                    <button onClick={()=>{props.onDeleteHandler(ele.id,+ele.table)}}>delete</button>
 
                 </li>
             )
